@@ -1,7 +1,16 @@
 #! /usr/bin/python
 
-import sys,inspect
-sys.path.append("/home/tsayers/COFFEE/class")
+import sys,inspect,os
+import readline
+histfile = os.path.join(os.path.expanduser("~"), ".pyhist")
+try:
+    readline.read_history_file(histfile)
+except IOError:
+    pass
+import atexit
+atexit.register(readline.write_history_file, histfile)
+del os, histfile
+sys.path.append("/users/todd.sayers/COFFEE/class")
 from espresso import *
 m = espresso()
 print "\nCoffee Menu System v1.0"
@@ -19,17 +28,19 @@ while m.progMode != "q":
       print m.get_brewSettings()
 
    if m.progMode == "brewTemp":
-      m.set_temp(tempType="brew")
+      m.set_variable("brewTemp")
 
    if m.progMode == "brewTime":
-      m.set_time(timeType="brew")
+      m.set_variable("brewTime")
 
    if m.progMode == "preinfusionTime":
-      m.set_time(timeType="preinfusion")
+      #m.set_time(timeType="preinfusion")
+      m.set_variable("preinfusionTime")
 
 
    if m.progMode == "preinfusionTemp":
-      m.set_temp(tempType="preinfusion")
+      #m.set_temp(tempType="preinfusion")
+      m.set_variable("preinfusionTemp")
 
    #if m.progMode == "loadProfile":
    #

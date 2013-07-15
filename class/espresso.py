@@ -9,7 +9,7 @@ class espresso:
       self.brewSecs = 20
       self.msg = "Hello, Dave"
       self.level = 0
-      self.brewSettings = {}
+      self.brewSettings = { "brewTemp": 93, "brewTime": 25, "preinfusionTemp": 93, "preinfusionTime": 5, "setTimeout": 30 }
       self.programMode = [ "brewTemp", "brewTime", "preinfusionTemp", "preinfusionTime", "setTimeout", "loadProfile", "showSettings" ]
       self.progMode = self.msg
 
@@ -24,17 +24,22 @@ class espresso:
    def debug_show_functionName(self,functionName):
       print self.msg + "\tYou are in the " +  functionName + " function"
 
-   def set_temp(self,tempType="brew",newTemp=0):
-      tempType = str(tempType) + "Temp"
-      if self.debugMode is True:
-         functionName = inspect.stack()[0][3]
-         self.debug_show_functionName(functionName)
 
-      if newTemp > 0:
-         self.brewTemp = int(newTemp)
-      else:
-         self.brewTemp = raw_input(tempType + " Temp: ")
-         self.brewSettings[tempType] = self.brewTemp
+   def set_variable(self,variableName="brewTemp"):
+      variableName = str(variableName)
+      while True:
+         userInput = raw_input(variableName + " +/- (press 'q' to exit):  ")
+         if userInput == "+":
+            self.increment_variable(variableName)
+            print self.brewSettings[variableName] 
+         elif userInput == "-":
+            self.decrement_variable(variableName)
+            print self.brewSettings[variableName] 
+         elif userInput.strip() == "q":
+	    break
+         else:
+            print "Invalid input"
+
 
    def get_temp(self):
       if self.debugMode is True:
@@ -82,4 +87,24 @@ class espresso:
          self.debug_show_functionName(functionName)
 
       self.brewSettings[timeType] = raw_input(timeType + " Time (in seconds): ")
+
+
+   def increment_variable(self,variableName):
+      if self.debugMode is True:
+         functionName = inspect.stack()[0][3]
+         self.debug_show_functionName(functionName)
+
+      curVal = self.brewSettings[variableName] 
+      newVal = int(curVal) + 1
+      self.brewSettings[variableName] = newVal
+
+
+   def decrement_variable(self,variableName):
+      if self.debugMode is True:
+         functionName = inspect.stack()[0][3]
+         self.debug_show_functionName(functionName)
+
+      curVal = self.brewSettings[variableName] 
+      newVal = int(curVal) - 1
+      self.brewSettings[variableName] = newVal
 
