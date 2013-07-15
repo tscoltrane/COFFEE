@@ -1,0 +1,8 @@
+This is a very minimalist, simple menu system written in Python 2.7.
+Although it's basically just pseudocode for a system I intend to implement
+in C++, it's nonetheless a perfectly legitimate/functional system.
+
+The use of +/- to increment/decrement values facilitates an easy transition
+to the use of buttons for input (this is meant to run on an Arduino
+microcontroller).  Please feel free to use this code for non-commerical,
+open-source projects.  No other use is authorized.
