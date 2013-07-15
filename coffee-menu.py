@@ -10,7 +10,7 @@ except IOError:
 import atexit
 atexit.register(readline.write_history_file, histfile)
 del os, histfile
-sys.path.append("/users/todd.sayers/COFFEE/class")
+sys.path.append("./class")
 from espresso import *
 m = espresso()
 print "\nCoffee Menu System v1.0"
