@@ -1,5 +1,5 @@
 CC      = g++
-SOURCES = coffee-menu.cpp
+SOURCES = coffee-menu.cpp coffee-menu.implementation.cpp
 OBJECTS = foo.o
 TARGET  = asdf
 RM      = /bin/rm -rf
